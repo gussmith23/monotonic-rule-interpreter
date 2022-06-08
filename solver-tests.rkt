@@ -231,6 +231,7 @@
    (define-symbolic a b c (bitvector 1))
    (define-symbolic a-8 b-8 (bitvector 8))
    (define-symbolic a-2 b-2 (bitvector 2))
+   (define-symbolic a-4 b-4 (bitvector 4))
    ;;; Dual-rail add is implemented with a minimum of 2 gates and 1 wire.
    (check-false (sat? (helper2 #:inputs (list a b)
                                #:outputs (list (bvand a b))
@@ -284,10 +285,10 @@
                               #:wires 2
                               #:iters 5)))
    ;;; Implementing operations over multibit bitvectors.
-   (check-true (sat? (helper2 #:inputs (list a-8 b-8)
-                              #:outputs (list (bvand a-8 b-8))
+   (check-true (sat? (helper2 #:inputs (list a-4 b-4)
+                              #:outputs (list (bvand a-4 b-4))
                               #:intermediates 0
-                              #:bw 6
+                              #:bw 5
                               #:gates 8
-                              #:wires 0
+                              #:wires 4
                               #:iters 1)))))
