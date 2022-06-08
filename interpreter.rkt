@@ -85,3 +85,12 @@
                 (bv #b1001 4))
   (check-equal? (apply-rule (bv #b1101 4) (list (list (bv 0 2) (bv 3 2) (bv 2 2)) (list (bv 1 2))))
                 (bv #b1111 4)))
+
+(module+ test
+  (require rackunit)
+  (test-begin
+   (define rws (list (list (list (bv #b010 3) (bv #b010 3)) (list (bv #b001 3) (bv #b001 3)))))
+   (check-equal? (interpreter (bv #b101000 6) rws 1) (bv #b101000 6))
+   (check-equal? (interpreter (bv #b011000 6) rws 1) (bv #b011000 6))
+   (check-equal? (interpreter (bv #b100100 6) rws 1) (bv #b100110 6))
+   (check-equal? (interpreter (bv #b010100 6) rws 1) (bv #b010110 6))))
